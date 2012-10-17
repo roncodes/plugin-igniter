@@ -1,0 +1,61 @@
+.plugin_wrap {
+	margin:18px;
+	margin-top:20px;
+	width:750px;
+	display:block;
+	position:relative;
+}
+
+.plugin_header {
+	width:100%;
+	border-bottom:1px solid #ccc;
+	float:left;
+	display:block;
+	margin-bottom:20px;
+}
+
+.plugin_header h1 {
+	display:inline;
+	float:left;
+}
+
+.plugin_header small {
+	display:inline;
+	float:left;
+}
+
+.plugin_body {
+	margin:5px;
+	min-height:240px;
+}
+
+.plugin_body input[type=text] {
+	width:290px;
+	height:25px;
+}
+
+.plugin_body button {
+	width:200px;
+	height:25px;
+	cursor:pointer;
+}
+
+.plugin_body button hover {
+	background:#77bd43;
+}
+
+.plugin_body label {
+	width:170px;
+	float:left;
+	line-height:25px;
+}
+
+.section_left {
+	float:left;
+	width:50%;
+}
+
+.section_right {
+	float:left;
+	width:50%;
+}
