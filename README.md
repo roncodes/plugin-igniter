@@ -21,6 +21,9 @@ $this->load('views/welcome');
 
 This would load the view welcome.php
 
+
+<b>Future updates...</b>
+
 Plugin Igniter can also implement helpers, and libraries that are auto-loaded into the framework so the helper functions can be used throughout views and controllers.
 
 More updates coming soon, I use this MVC framework for developing Wordpress plugins in a more structured form, hopefully others can find this useful.
