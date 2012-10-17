@@ -53,4 +53,4 @@ class Core {
 	}
 	
 }
-$infusionsoft = new Core;
+$plugin = new Core;
