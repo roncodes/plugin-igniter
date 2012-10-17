@@ -1,4 +1,4 @@
-Controllers usage:
+<b>Controllers usage:</b>
 
 Usage of controllers in this framework are created just like any other MVC controller, but executed via shortcodes.
 
@@ -10,14 +10,16 @@ In the future controllers will be able to be called by URL of wordpress, I'm thi
 
 The default method called if none specified is always index(), if no index method exist it just runs the construct code or nothing.
 
-Model usage:
+<b>Model usage:</b>
+
 Still being implemented, but will be implemented using the WPDB object, models will allow users to create serialized tables and query easily from WPDB by methods like get_all() or get_by()
 
-View usage:
+<b>View usage:</b>
+
 You can load a view by using the load method. Example:
 $this->load('views/welcome'); 
 
-Will load the view welcome.php
+This would load the view welcome.php
 
 Plugin Igniter can also implement helpers, and libraries that are auto-loaded into the framework so the helper functions can be used throughout views and controllers.
 
