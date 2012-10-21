@@ -1,11 +1,11 @@
 <?php   
 /* 
-    Plugin Name: Infusionsoft Wordpress Plugin for Developers
-    Plugin URI: http://www.infusionsoft.com/
-    Description: The core application that serves Infusionsoft API hooks for developers
-    Author: Ronald A. Richardson
+    Plugin Name: Plugin Igniter MVC Framework
+    Plugin URI: Your Plugin URI
+    Description: Your Plugin Description
+    Author: You
     Version: 1.0 
-    Author URI: http://www.ronaldarichardson.com/
+    Author URI: Your URL
 */  
 
 class Core {
