@@ -1,6 +1,6 @@
 <?php
 /* 
-    Plugin Name: Wordpress Igniter
+    Plugin Name: Wordpress PluginIgniter
     Plugin URI: https://github.com/theprestig3/wp-plugin-igniter
     Description: An virtual MVC framework for developing wordpress plugins
     Author: Ronald A. Richardson
