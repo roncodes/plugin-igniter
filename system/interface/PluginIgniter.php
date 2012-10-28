@@ -2,7 +2,7 @@
 	
 <div class="containter" style="padding:15px;">
 	<div class="page-header">
-		<h2>WP PluginIgniter <small>Verion <?=PI_System_Version?></small></h2>
+		<h2>WP PluginIgniter <small>Version <?=PI_System_Version?></small></h2>
 	</div>
 	<h4>Constants</h4>
 	<table class="table">
