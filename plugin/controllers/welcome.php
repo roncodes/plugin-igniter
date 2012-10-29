@@ -8,7 +8,8 @@ class Welcome extends PI_Controller {
 	
 	function index()
 	{
-		echo 'Index method';
+		echo 'Test loader';
+		self::$load->library('Twilio');
 	}
 	
 	function hello_world()

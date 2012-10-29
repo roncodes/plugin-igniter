@@ -27,7 +27,7 @@ class PI_Loader {
 		$this->_pi_model_paths = array(PLUGINPATH);
 		$this->_pi_view_paths = array(PLUGINPATH.'views/'	=> TRUE);
 
-		// log_message('debug', "Loader Class Initialized");
+		log_message('debug', "Loader Class Initialized");
 	}
 	
 	public function initialize()
@@ -38,5 +38,23 @@ class PI_Loader {
 
 		return $this;
 	}
+	
+	public function library($lib = NULL)
+	{
+		$file = PLUGINPATH . 'libraries/' . $lib . '.' . EXT;
+		if($lib==NULL) {
+			log_message('error', 'Attempted to load non existing library');
+			return false;
+		}
+		if(!file_exists($file)) {
+			log_message('error', 'Attempted to load non existing library');
+			return false;
+		}
+		include($file);
+		$lib_name = get_class_name_from_file($file);
+		$this->$lib_name = new $lib_name;
+		return $this->$lib_name;
+	}
+		
 	
 }

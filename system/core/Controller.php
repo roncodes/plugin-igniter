@@ -3,13 +3,13 @@ class PI_Controller extends PI_System {
 	
 	private static $instance;
 	
+	public static $load;
+	
 	function __construct()
 	{
 		self::$instance =& $this;
 		
 		add_action('init', array($this, 'wp_init'));
-
-		// $this->load = new PI_Loader;
 	}
 	
 	public static function init($controller = NULL)
@@ -23,6 +23,14 @@ class PI_Controller extends PI_System {
 			}
 			add_shortcode(strtolower(get_class($controller)).'_'.$method, array(get_class($controller), $method));
 		}
+		/* PI Loader for use */
+		self::$load = new PI_Loader;
+		$controller->load = self::$load;
+	}
+	
+	public static function load()
+	{
+		return self::$load;
 	}
 	
 	public static function &get_instance()

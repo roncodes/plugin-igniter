@@ -1,16 +1,18 @@
 <?php   
 class PI_System {
 
-	var $version = '1.0';
+	public $version = '1.0';
 	
-	var $controllers = array();
+	public $controllers = array();
 	
-	var $active_cores = array();
+	private $load; // PI_Loader property is loaded from the system for wide use
 	
 	function __construct()
 	{
 		/* Constants */
-		define('PI_System_Version', $this->version);
+		define('PI_SYS_VERSION', $this->version);
+		define('PI_SYS_AUTHOR', 'Ronald A. Richardson');
+		define('PI_SYS_WEBSITE', 'www.ronaldarichardson.com');
 		
 		/* Set PluginIgniter defaults */
 		if(PIINFO){
@@ -23,22 +25,15 @@ class PI_System {
 			include($helper);
 		}
 		
-		/* Load Core classes */
+		/* Load core classes */
 		foreach(glob(BASEPATH . 'core/*.php') as $core) 
 		{  
 			include($core);
-			$core = get_class_name_from_file($core);
-			$this->active_cores[] = new $core;
 		}
+		$pi = new PI_Controller;
 		
 		/* Load System libraries */
 		foreach(glob(BASEPATH . 'libraries/*.php') as $lib) 
-		{  
-			include($lib);
-		}
-	
-		/* Load libraries */
-		foreach(glob(PLUGINPATH . 'libraries/*.php') as $lib) 
 		{  
 			include($lib);
 		}
@@ -49,7 +44,7 @@ class PI_System {
 			include($helper);
 		}
 		
-		/* Load Controllers and views */
+		/* Load Controllers */
 		foreach(glob(PLUGINPATH . 'controllers/*.php') as $controller_file) 
 		{  
 			include($controller_file);
