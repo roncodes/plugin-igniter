@@ -21,7 +21,13 @@ Loading a view within a shortcode:
 self::$load->view('welcome/hello_world');
 
 If you're loading a view to a controller rendered page, simply:
-$this->load->view('welcome/hello_world'); 
+$this->load->view('welcome/hello_world');
+
+You can also pass in variables to your view via an array, same as CI, see:
+self::$load->view('test', array('foo' => 'bar'));
+
+In your view you can now use $foo, 
+<?=$foo?> will print: bar
 
 This would load the view welcome/hello_world.php
 

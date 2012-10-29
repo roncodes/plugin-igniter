@@ -41,7 +41,7 @@ class PI_Loader {
 	
 	public function library($lib = NULL)
 	{
-		$file = PLUGINPATH . 'libraries/' . $lib . '.' . EXT;
+		$file = PLUGINPATH . 'libraries/' . $lib . EXT;
 		if($lib==NULL) {
 			log_message('error', 'Attempted to load non existing library');
 			return false;
@@ -55,6 +55,20 @@ class PI_Loader {
 		$this->$lib_name = new $lib_name;
 		return $this->$lib_name;
 	}
-		
+	
+	public function view($view = NULL, $data = array())
+	{
+		$file = PLUGINPATH . 'views/' . $view . EXT;
+		if($view==NULL) {
+			log_message('error', 'Attempted to load non existing view');
+			return false;
+		}
+		if(!file_exists($file)) {
+			log_message('error', 'Attempted to load non existing view');
+			return false;
+		}
+		extract($data, EXTR_OVERWRITE);
+		include($file);
+	}
 	
 }
