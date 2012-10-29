@@ -16,7 +16,11 @@ Still being implemented, but will be implemented using the WPDB object, models w
 
 <b>View usage:</b>
 
-You can load a view by using the load method. Example:
+You can load a view by using the PI_Loader. Example:
+Loading a view within a shortcode:
+self::$load->view('welcome/hello_world');
+
+If you're loading a view to a controller rendered page, simply:
 $this->load->view('welcome/hello_world'); 
 
 This would load the view welcome/hello_world.php
