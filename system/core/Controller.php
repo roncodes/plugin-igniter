@@ -5,14 +5,18 @@ class PI_Controller extends PI_System {
 	
 	public static $load;
 	
+	public static $active_properties = array();
+	
 	function __construct()
 	{
 		self::$instance =& $this;
 		
-		add_action('init', array($this, 'wp_init'));
+		$this->load = new stdClass;
+		
+		add_action('init', array($this, '_wp_init'));
 	}
 	
-	public static function init($controller = NULL)
+	public static function _init($controller = NULL)
 	{
 		/* Auto-generate WP shortcodes to controllers and it's methods */
 		foreach (get_class_methods(get_class($controller)) as $method) {
@@ -25,23 +29,34 @@ class PI_Controller extends PI_System {
 		}
 		/* PI Loader for use */
 		self::$load = new PI_Loader;
+		self::$instance->load = self::$load;
 		$controller->load = self::$load;
 	}
 	
-	public static function load()
+	public function __set($name, $value)
+    {
+        self::$active_properties[$name] = $value;
+    }
+	
+	public function __get($name)
+	{
+        return self::$active_properties[$name];
+    }
+	
+	public static function _load()
 	{
 		return self::$load;
 	}
 	
-	public static function &get_instance()
+	public static function &_get_instance()
 	{
 		return self::$instance;
 	}
 	
-	public static function wp_init()
+	public static function _wp_init()
 	{
 		if(isset($_GET['controller'])) {
-			$pi = self::get_instance();
+			// $pi = self::_get_instance();
 			foreach(glob(PLUGINPATH . 'controllers/*.php') as $controller) 
 			{  
 				$class = get_class_name_from_file($controller);

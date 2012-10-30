@@ -1,5 +1,5 @@
 <?php
-class PI_Loader {
+class PI_Loader extends PI_Controller {
 
 	protected $_pi_ob_level;
 	
@@ -19,6 +19,10 @@ class PI_Loader {
 	protected $_pi_models			= array();
 	protected $_pi_helpers			= array();
 	
+	/* Model misc */
+	public $_pi_loaded_models_alias = array();
+	static $alias;
+	
 	public function __construct()
 	{
 		$this->_pi_ob_level  = ob_get_level();
@@ -30,6 +34,13 @@ class PI_Loader {
 		log_message('debug', "Loader Class Initialized");
 	}
 	
+	function __call($class, $args) { }
+	
+	public function __set($name, $value)
+	{
+		$this->$name = $value;
+	}
+	
 	public function initialize()
 	{
 		$this->_pi_classes = array();
@@ -39,7 +50,7 @@ class PI_Loader {
 		return $this;
 	}
 	
-	public function library($lib = NULL)
+	public function library($lib = NULL, $alias = false)
 	{
 		$file = PLUGINPATH . 'libraries/' . $lib . EXT;
 		if($lib==NULL) {
@@ -50,10 +61,13 @@ class PI_Loader {
 			log_message('error', 'Attempted to load non existing library');
 			return false;
 		}
+		
+		$lib_class = get_class_name_from_file($file);
+		$lib_name = ($alias) ? $alias : $lib_class;
+		
 		include($file);
-		$lib_name = get_class_name_from_file($file);
-		$this->$lib_name = new $lib_name;
-		return $this->$lib_name;
+		$lib = new $lib_class;
+		parent::__set($lib_name, $lib);
 	}
 	
 	public function view($view = NULL, $data = array())
@@ -69,6 +83,30 @@ class PI_Loader {
 		}
 		extract($data, EXTR_OVERWRITE);
 		include($file);
+	}
+	
+	public function model($model, $alias = false)
+	{
+		$file = PLUGINPATH . 'models/' . $model . EXT;
+		if($model==NULL) {
+			log_message('error', 'Attempted to load non existing model');
+			return false;
+		}
+		if(!file_exists($file)) {
+			log_message('error', 'Attempted to load non existing model');
+			return false;
+		}
+		if (preg_match('/[^a-zA-Z]+/', $alias, $matches)) {
+			log_message('error', 'Model alias contains special characters');
+			return false;
+		}
+		
+		$model_class = get_class_name_from_file($file);
+		$model_name = ($alias) ? $alias : $model_class;
+		
+		include($file);
+		$model = new $model_class;
+		parent::__set($model_name, $model);
 	}
 	
 }
