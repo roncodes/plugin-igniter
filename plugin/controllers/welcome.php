@@ -21,10 +21,12 @@ class Welcome extends PI_Controller {
 	{
 		$this->load->model('Car_model', 'cars');
 		// $this->cars->create_table(array('year', 'make', 'model', 'color'));
-		// $this->cars->insert(array('year' => '2001', 'make' => 'honda', 'model' => 'nsx', 'color' => 'red'));
+		// $this->cars->insert(array('year' => '1998', 'make' => 'honda', 'model' => 'accord', 'color' => 'green'));
 		// var_dump($this->cars->get_table());
 		// $this->cars->list_tables();
 		// var_dump($this->cars->table_exists('saas'));
 		// var_dump($this->cars->delete_table('ta'));
+		// var_dump($this->cars->get_by_id(1));
+		// var_dump($this->cars->get_by('make', 'honda'));
 	}
 }

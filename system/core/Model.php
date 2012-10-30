@@ -61,7 +61,7 @@ class PI_Model extends PI_System {
 				}
 			}
 		}
-		return update_option(self::$prefix . $table, json_encode(array_merge($data, array($row))));
+		return update_option($table, json_encode(array_merge($data, array($row))));
 	}
 	
 	function table_exists($table)
@@ -82,7 +82,46 @@ class PI_Model extends PI_System {
 	function get_table($table = NULL)
 	{
 		$this->_table_name($table);
-		return json_decode(get_option(self::$prefix . $table), true);
+		return json_decode(get_option($table), true);
+	}
+	
+	function get_table_as_obj($table = NULL)
+	{
+		$this->_table_name($table);
+		return json_decode(get_option($table));
+	}
+	
+	function get_all($table = NULL)
+	{
+		return $this->get_table($table);
+	}
+	
+	function get_by_id($id, $table = NULL)
+	{
+		$data = $this->get_all($table);
+		if(!isset($id)) {
+			die(pi_error('No row id provided to pull data'));
+		}
+		if(array_key_exists($id, $data)){
+			return $data[$id];
+		} else {
+			die(pi_error('Row id is invalid for this table'));
+		}
+	}
+	
+	function get_by($column, $value, $table = NULL, $results = array())
+	{
+		$data = $this->get_all($table);
+		$columns = true;
+		foreach($data as $row) {
+			if(!$columns) {
+				if($row[$column]==$value){
+					$results[] = $row;
+				}
+			}
+			$columns = false;
+		}
+		return $results;
 	}
 	
 	function _table_name(&$table)
@@ -96,10 +135,5 @@ class PI_Model extends PI_System {
 	/*
 		End virtual table methods
 	*/
-	
-	function get_all($table = NULL)
-	{
-		return $this->get_table($table);
-	}
 	
 }
