@@ -40,7 +40,11 @@ class PI_Controller extends PI_System {
 	
 	public function __get($name)
 	{
-        return self::$active_properties[$name];
+		if(array_key_exists($name, self::$active_properties)){
+			return self::$active_properties[$name];
+		} else {
+			die(pi_error('Failed to load property: \'' . $name . '\', check to see if property exists'));
+		}
     }
 	
 	public static function _load()

@@ -3,12 +3,6 @@ class PI_Loader extends PI_Controller {
 
 	protected $_pi_ob_level;
 	
-	/* Paths */
-	protected $_pi_view_paths		= array();
-	protected $_pi_library_paths	= array();
-	protected $_pi_model_paths		= array();
-	protected $_pi_helper_paths		= array();
-	
 	/* Base classes */
 	protected $_base_classes		= array(); // Set by the pi controller class
 	
@@ -32,13 +26,6 @@ class PI_Loader extends PI_Controller {
 		$this->_pi_view_paths = array(PLUGINPATH.'views/'	=> TRUE);
 
 		log_message('debug', "Loader Class Initialized");
-	}
-	
-	function __call($class, $args) { }
-	
-	public function __set($name, $value)
-	{
-		$this->$name = $value;
 	}
 	
 	public function initialize()
