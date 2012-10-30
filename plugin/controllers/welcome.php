@@ -26,7 +26,15 @@ class Welcome extends PI_Controller {
 		$this->cars->list_tables(); /* List all virtual tables */
 		$this->cars->table_exists('cars'); /* Returns true, also true with prefix: pi_cars */
 		$this->cars->delete_table('ta'); /* Attempts to delete specified table, in this case will return false; otherwise true if table deleted */
-		$this->cars->get_by_id(1);
-		$this->cars->get_by('make', 'honda');
+		$this->cars->get_by_id(1); /* Get row by id, virtual table rows have auto incrementing id's already without you having to make it a column */
+		$this->cars->get_by('make', 'honda'); /* You can also retrieve row(s) by a specific column like so */
+	}
+	
+	function view_cars()
+	{
+		$shortcode = self::_get_instance();
+		$shortcode->load->model('Car_model', 'cars');
+		$data['cars'] = $shortcode->cars->get_all();
+		$shortcode->load->view('view_cars', $data);
 	}
 }

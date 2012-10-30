@@ -82,7 +82,7 @@ class PI_Model extends PI_System {
 	function get_table($table = NULL)
 	{
 		$this->_table_name($table);
-		return json_decode(get_option($table), true);
+		return remove_columns_from_virtual_table(json_decode(get_option($table), true));
 	}
 	
 	function get_table_as_obj($table = NULL)
