@@ -20,13 +20,13 @@ class Welcome extends PI_Controller {
 	function test_model()
 	{
 		$this->load->model('Car_model', 'cars');
-		// $this->cars->create_table(array('year', 'make', 'model', 'color'));
-		// $this->cars->insert(array('year' => '1998', 'make' => 'honda', 'model' => 'accord', 'color' => 'green'));
-		// var_dump($this->cars->get_table());
-		// $this->cars->list_tables();
-		// var_dump($this->cars->table_exists('saas'));
-		// var_dump($this->cars->delete_table('ta'));
-		// var_dump($this->cars->get_by_id(1));
-		// var_dump($this->cars->get_by('make', 'honda'));
+		// $this->cars->create_table(array('year', 'make', 'model', 'color')); /* Creates a virtual table called 'cars' */
+		$this->cars->insert(array('year' => '1998', 'make' => 'honda', 'model' => 'accord', 'color' => 'green')); /* inserts a row into the virtual table */
+		$this->cars->get_table(); /* Returns current model table, or another if specified as paramater */
+		$this->cars->list_tables(); /* List all virtual tables */
+		$this->cars->table_exists('cars'); /* Returns true, also true with prefix: pi_cars */
+		$this->cars->delete_table('ta'); /* Attempts to delete specified table, in this case will return false; otherwise true if table deleted */
+		$this->cars->get_by_id(1);
+		$this->cars->get_by('make', 'honda');
 	}
 }

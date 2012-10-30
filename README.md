@@ -12,7 +12,28 @@ The default method called if none specified is always index(), if no index metho
 
 <b>Model usage:</b>
 
-Still being implemented, but will be implemented using the WPDB object, models will allow users to create serialized tables and query easily from WPDB by methods like get_all() or get_by()
+You can create models by extending the PI_Model, when you create a model in PI you are able to create 'virtual tables,' these virtuals table will allow you to organize your model data and make the most of plugin options, for example: Let's say I have a database of cars. So I create a model in PI as follows: Car_model.php
+
+With this I can load the model into a controller as follows:
+$this->load->model('Car_model'); // $this->Car_model;
+or
+$this->load->model('Car_model', 'cars'); // for alias $this->cars;
+
+You can then use the model as a virtual table if you like:
+Create table 'cars':
+$this->cars->create_table(array('year', 'make', 'model', 'color')); 
+The previous method will create a table with the columns: year, make, model and color
+
+With the newly created virtual table you can also do one of many data manipulations, see these examples below:
+$this->cars->insert(array('year' => '1998', 'make' => 'honda', 'model' => 'accord', 'color' => 'green')); /* inserts a row into the virtual table */
+		$this->cars->get_table(); /* Returns current model table, or another if specified as paramater */
+				$this->cars->list_tables(); /* List all virtual tables */
+						$this->cars->table_exists('cars'); /* Returns true, also true with prefix: pi_cars */
+								$this->cars->delete_table('ta'); /* Attempts to delete specified table, in this case will return false; otherwise true if table deleted */
+										$this->cars->get_by_id(1); /* Get row by id, virtual table rows have auto incrementing id's already without you having to make it a column */
+												$this->cars->get_by('make', 'honda'); /* You can also retrieve row(s) by a specific column like so */
+
+The idea of virtual tables is to make data models easier to implement in PI, and quicken plugin development in a familiar way.
 
 <b>View usage:</b>
 
