@@ -15,6 +15,12 @@
  */
 	define('PIINFO', true); // This determines whether or not to display WP PI Info page in the admin
 	define('DBPREFIX', 'pi_'); // This is your prefix for the virtual tables created in PI_Model
+	define('PLUGIN_NAME', 'Untitled'); // This is where you set the name of your plugin
+	define('PLUGIN_URL', 'http://localhost/'); // This is where you set the url to your plugin
+	define('PLUGIN_DESC', 'A short desc of this plugin');
+	define('PLUGIN_AUTHOR', 'You');
+	define('PLUGIN_VERSION', '1.0');
+	define('PLUGIN_AUTHOR_URL', 'http://ronaldarichardson.com/');
 
 /*
  *---------------------------------------------------------------
