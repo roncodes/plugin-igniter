@@ -5,6 +5,8 @@ class PI_Controller extends PI_System {
 	
 	public static $load;
 	
+	public static $control_panel;
+	
 	public static $active_properties = array();
 	
 	function __construct()
@@ -30,7 +32,9 @@ class PI_Controller extends PI_System {
 		/* PI Loader for use */
 		self::$load = new PI_Loader;
 		self::$instance->load = self::$load;
-		$controller->load = self::$load;
+		/* PI Control Panel use */
+		self::$control_panel = new PI_Control_Panel;
+		self::$instance->control_panel = self::$control_panel;
 	}
 	
 	public function __set($name, $value)

@@ -30,7 +30,7 @@ class PI_System {
 		{  
 			include($core);
 		}
-		$pi = new PI_Controller;
+		$this->pi = new PI_Controller;
 		
 		/* Load System libraries */
 		foreach(glob(BASEPATH . 'libraries/*.php') as $lib) 

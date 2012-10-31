@@ -13,7 +13,7 @@
  * CONFIG VARIABLES
  *---------------------------------------------------------------
  */
-	define('PIINFO', true); // This determines whether or not to display WP PI Info page in the admin
+	define('PIINFO', false); // This determines whether or not to display WP PI Info page in the admin
 	define('DBPREFIX', 'pi_'); // This is your prefix for the virtual tables created in PI_Model
 	define('PLUGIN_NAME', 'Untitled'); // This is where you set the name of your plugin
 	define('PLUGIN_URL', 'http://localhost/'); // This is where you set the url to your plugin

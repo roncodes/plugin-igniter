@@ -52,7 +52,7 @@ class PI_Model extends PI_System {
 		$data = $this->get_table($table);
 		foreach($data['columns'] as $index => $column) {
 			if(array_key_exists(0, $input)){
-				$row[$column] = $input[$index];
+					$row[$column] = $input[$index];
 			} else {
 				foreach($input as $key => $el) {
 					if($column==$key){
